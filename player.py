@@ -57,3 +57,5 @@ class Player(CircleShape):
             else:
                 self.shoot()
                 self.cooldown = PLAYER_SHOOT_COOLDOWN_SECONDS
+
+        self.wrap_around()
