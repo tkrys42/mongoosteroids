@@ -55,12 +55,20 @@ def main():
                     log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
+                    # 1. Determine base points by size
                     if asteroid.radius < 30:
-                        score += 250
+                        points = 250
                     elif asteroid.radius < 50:
-                        score += 150
+                        points = 150
                     else:
-                        score += 100
+                        points = 100
+                        
+                    # 2. Apply the gold multiplier if applicable
+                    if asteroid.is_gold:
+                        points = int(points * 1.5)
+                        
+                    # 3. Add to the total score
+                    score += points
 
         for obj in drawable:
             obj.draw(screen)

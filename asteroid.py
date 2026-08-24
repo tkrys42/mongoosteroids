@@ -7,9 +7,14 @@ import random
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
+        # random chance any asteroid is golden (worth more points)
+        self.is_gold = random.randint(1, 20) == 1
+
 
     def draw(self, screen):
-        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
+        # if asteroid is golden, it's yellow colored, otherwise white
+        color = "yellow" if self.is_gold else "white"
+        pygame.draw.circle(screen, color, self.position, self.radius, LINE_WIDTH)
 
     def update(self, dt):
         self.position += (self.velocity * dt)
